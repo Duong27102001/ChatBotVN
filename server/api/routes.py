@@ -13,9 +13,11 @@ from server.model.History import ChatHistoryModel
 import os
 from dotenv import load_dotenv
 
-# Tải các biến môi trường từ tệp .env
-load_dotenv()
-OpenAIKey = os.getenv("OPENAI")
+load_dotenv()  # Tải biến môi trường từ tệp .env
+
+api_key = os.getenv('OPENAI_API_KEY')  # Lấy giá trị của biến môi trường OPENAI_API_KEY
+
+
 ST_MODEL_PATH = "VoVanPhuc/sup-SimCSE-VietNamese-phobert-base"
 DB_PERSIST_PATH = "./vector/"
 embeddings = HuggingFaceEmbeddings(model_name=ST_MODEL_PATH, model_kwargs={"device": "cpu"})
@@ -49,7 +51,7 @@ def handle_query():
 
     # Send to OpenAI's LLM to generate a completion
     chat = ChatOpenAI( 
-        openai_api_key= OpenAIKey,
+        openai_api_key= api_key,
         model='gpt-3.5-turbo'
 )
     res = chat(data)

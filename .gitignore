@@ -13,3 +13,4 @@
 # production
 /requirements.txt
 /server/chroma_db_demuc
+.env
